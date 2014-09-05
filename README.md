@@ -454,6 +454,7 @@ Finished in 0.0016 seconds (files took 0.09781 seconds to load)
 4 examples, 0 failures
 ```
 ## <a name="6">躾</a>
+プログラムの変更・修正が発生したら毎回整理・整頓・清掃・清潔を実施する
 
 # 参照
 
