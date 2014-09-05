@@ -15,6 +15,7 @@
 + [清掃](#4)
 + [清潔](#5)
 + [躾](#6)
++ [おまけ](#7)
 
 # 詳細
 ## <a name="1">セットアップ</a>
@@ -456,7 +457,21 @@ Finished in 0.0016 seconds (files took 0.09781 seconds to load)
 ## <a name="6">躾</a>
 プログラムの変更・修正が発生したら毎回整理・整頓・清掃・清潔を実施する
 
+## <a name="7">おまけ</a>
+以下の操作実施すると_chef/sample/5s_example_以下にサンプルファイルがチェックアウトされて色々いじれます
+```
+$ cd chef/sample/
+$ vagrant up
+$ vagrant ssh
+$ rvm install 2.1.1
+$ cd /vagrant
+$ git clone https://github.com/k2works/5s_example.git
+$ cd 5s_example
+$ bundle install
+```
+
 # 参照
 
 + [Ruby | Guard gem を利用してファイルの変更を検出し、任意のタスクを自動実行する](http://qiita.com/tbpgr/items/f5be21d8e19dd852d9b7)
 + [RSpecPiccolo](https://github.com/tbpgr/rspec_piccolo)
++ [chef-rvm](https://github.com/fnichol/chef-rvm)
