@@ -146,6 +146,245 @@ Finished in 0.00218 seconds (files took 0.12787 seconds to load)
 4 examples, 0 failures
 ```
 ## <a name="3">整頓</a>
+_lib/five_s_sample.rb_整頓前
+```ruby
+# encoding: utf-8
+
+class FiveS_sample
+  def method01
+    "10"
+  end
+
+  def method02(arg)
+    "10"
+  end
+
+  def method03
+    "1"
+  end
+
+  def method04(arg)
+    "10"
+  end
+end
+```
+_lib/five_s_sample.rb_整頓後
+```ruby
+# encoding: utf-8
+
+class FiveS_sample
+
+#  def method01
+#    "10"
+#  end
+
+#  def method02(arg)
+#    "10"
+#  end
+
+#  def method03
+#    "1"
+#  end
+
+#  def method04(arg)
+#    "10"
+#  end
+
+  def return_ten
+    "10"
+  end
+
+  def return_ten_with_arg(arg)
+    "10"
+  end
+
+  def return_one
+    "1"
+  end
+end
+```
+テストケース整頓前
+```bash
+$ rspec
+/Users/k2works/projects/github/5s_example/lib/five_s_sample.rb:8: warning: method redefined; discarding old return_ten
+/Users/k2works/projects/github/5s_example/lib/five_s_sample.rb:4: warning: previous definition of return_ten was here
+FFFF
+
+Failures:
+
+  1) FiveS_sample method01 |case_no=1|case_title=10を返す
+     Failure/Error: actual = five_s_sample.method01
+     NoMethodError:
+       undefined method `method01' for #<FiveS_sample:0x0000010261ab40>
+     # ./spec/five_s_sample_spec.rb:25:in `block (4 levels) in <top (required)>'
+
+  2) FiveS_sample method02 |case_no=1|case_title=1を聞いて10を返す
+     Failure/Error: actual = five_s_sample.method02("1")
+     NoMethodError:
+       undefined method `method02' for #<FiveS_sample:0x000001026191a0>
+     # ./spec/five_s_sample_spec.rb:62:in `block (4 levels) in <top (required)>'
+
+  3) FiveS_sample method03 |case_no=1|case_title=1を返す
+     Failure/Error: actual = five_s_sample.method03
+     NoMethodError:
+       undefined method `method03' for #<FiveS_sample:0x00000102613868>
+     # ./spec/five_s_sample_spec.rb:99:in `block (4 levels) in <top (required)>'
+
+  4) FiveS_sample method04 |case_no=1|case_title=9を聞いて10を返す
+     Failure/Error: actual = five_s_sample.method04("9")
+     NoMethodError:
+       undefined method `method04' for #<FiveS_sample:0x00000102610f00>
+     # ./spec/five_s_sample_spec.rb:136:in `block (4 levels) in <top (required)>'
+
+Finished in 0.00268 seconds (files took 0.10725 seconds to load)
+4 examples, 4 failures
+
+Failed examples:
+
+rspec ./spec/five_s_sample_spec.rb:17 # FiveS_sample method01 |case_no=1|case_title=10を返す
+rspec ./spec/five_s_sample_spec.rb:54 # FiveS_sample method02 |case_no=1|case_title=1を聞いて10を返す
+rspec ./spec/five_s_sample_spec.rb:91 # FiveS_sample method03 |case_no=1|case_title=1を返す
+rspec ./spec/five_s_sample_spec.rb:128 # FiveS_sample method04 |case_no=1|case_title=9を聞いて10を返す
+```
+_spec/five_s_sample_spec.rb_のテストケースを整頓
+```ruby
+# encoding: utf-8
+require "spec_helper"
+require "five_s_sample"
+
+describe FiveS_sample do
+
+  context :return_ten do
+    cases = [
+      {
+        case_no: 1,
+        case_title: "10を返す",
+        expected: "10",
+      },
+    ]
+
+    cases.each do |c|
+      it "|case_no=#{c[:case_no]}|case_title=#{c[:case_title]}" do
+        begin
+          case_before c
+
+          # -- given --
+          five_s_sample = FiveS_sample.new
+
+          # -- when --
+          actual = five_s_sample.return_ten
+
+          # -- then --
+          expect(actual).to eq(c[:expected])
+        ensure
+          case_after c
+        end
+      end
+
+      def case_before(c)
+        # implement each case before
+      end
+
+      def case_after(c)
+        # implement each case after
+      end
+    end
+  end
+
+  context :return_ten_with_arg do
+    cases = [
+      {
+        case_no: 1,
+        ask: "1",
+        case_title: "1を聞いて10を返す",
+        expected: "10",
+      },
+      {
+        case_no: 2,
+        ask:"9",
+        case_title: "9を聞いて10を返す",
+        expected: "10",
+      },
+    ]
+
+    cases.each do |c|
+      it "|case_no=#{c[:case_no]}|case_title=#{c[:case_title]}" do
+        begin
+          case_before c
+
+          # -- given --
+          five_s_sample = FiveS_sample.new
+
+          # -- when --
+          actual = five_s_sample.return_ten_with_arg(c[:ask])
+
+          # -- then --
+          expect(actual).to eq(c[:expected])
+        ensure
+          case_after c
+        end
+      end
+
+      def case_before(c)
+        # implement each case before
+      end
+
+      def case_after(c)
+        # implement each case after
+      end
+    end
+  end
+
+  context :return_one do
+    cases = [
+      {
+        case_no: 1,
+        case_title: "1を返す",
+        expected: "1",
+      },
+    ]
+
+    cases.each do |c|
+      it "|case_no=#{c[:case_no]}|case_title=#{c[:case_title]}" do
+        begin
+          case_before c
+
+          # -- given --
+          five_s_sample = FiveS_sample.new
+
+          # -- when --
+          actual = five_s_sample.return_one
+
+          # -- then --
+          expect(actual).to eq(c[:expected])
+        ensure
+          case_after c
+        end
+      end
+
+      def case_before(c)
+        # implement each case before
+      end
+
+      def case_after(c)
+        # implement each case after
+      end
+    end
+  end
+end
+```
+テストケース整頓後
+```bash
+$ rspec
+/Users/k2works/projects/github/5s_example/spec/five_s_sample_spec.rb:78: warning: method redefined; discarding old case_before
+/Users/k2works/projects/github/5s_example/spec/five_s_sample_spec.rb:78: warning: previous definition of case_before was here
+/Users/k2works/projects/github/5s_example/spec/five_s_sample_spec.rb:82: warning: method redefined; discarding old case_after
+/Users/k2works/projects/github/5s_example/spec/five_s_sample_spec.rb:82: warning: previous definition of case_after was here
+....
+
+Finished in 0.00172 seconds (files took 0.10122 seconds to load)
+4 examples, 0 failures
+```
 ## <a name="4">清掃</a>
 ## <a name="5">清潔</a>
 ## <a name="6">躾</a>
