@@ -18,6 +18,13 @@
 
 # 詳細
 ## <a name="1">セットアップ</a>
+```
+$ bundle install
+```
+```
+$ guard start
+```
+
 ## <a name="2">整理</a>
 ## <a name="3">整頓</a>
 ## <a name="4">清掃</a>
