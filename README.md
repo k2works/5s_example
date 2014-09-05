@@ -463,7 +463,6 @@ Finished in 0.0016 seconds (files took 0.09781 seconds to load)
 $ cd chef/sample/
 $ vagrant up
 $ vagrant ssh
-$ rvm install 2.1.1
 $ cd /vagrant
 $ git clone https://github.com/k2works/5s_example.git
 $ cd 5s_example

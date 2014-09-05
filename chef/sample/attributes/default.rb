@@ -3,3 +3,5 @@ default['rvm']['user_installs'] = [
     'rubies'        => ['2.1.1']
   }
 ]
+default['rvm']['app_version'] = "2.1.1"
+default['rvm']['app_gemset'] = "sample"
