@@ -18,6 +18,25 @@
 
 # 詳細
 ## <a name="1">セットアップ</a>
+```
+$ bundle install
+$ guard start
+$ rspec --init
+$ piccolo execute FiveS_sample five_s_sample method01 method02 method03 method04 method05 -p
+```
+自動生成された_Guardfile_を一部編集
+```ruby
+guard :rspec, cmd: "bundle exec rspec" do
+  ・・・
+```
+テストケースが通るようにする
+```bash
+$ rspec
+.....
+
+Finished in 0.0019 seconds (files took 0.09903 seconds to load)
+5 examples, 0 failures
+```
 ## <a name="2">整理</a>
 ## <a name="3">整頓</a>
 ## <a name="4">清掃</a>
@@ -25,3 +44,6 @@
 ## <a name="6">躾</a>
 
 # 参照
+
++ [Ruby | Guard gem を利用してファイルの変更を検出し、任意のタスクを自動実行する](http://qiita.com/tbpgr/items/f5be21d8e19dd852d9b7)
++ [RSpecPiccolo](https://github.com/tbpgr/rspec_piccolo)
