@@ -151,41 +151,4 @@ describe FiveS_sample do
       end
     end
   end
-
-  context :method05 do
-    cases = [
-      {
-        case_no: 1,
-        case_title: "うんこ",
-        expected: "うんこ",
-      },
-    ]
-
-    cases.each do |c|
-      it "|case_no=#{c[:case_no]}|case_title=#{c[:case_title]}" do
-        begin
-          case_before c
-
-          # -- given --
-          five_s_sample = FiveS_sample.new
-
-          # -- when --
-          actual = five_s_sample.method05
-
-          # -- then --
-          expect(actual).to eq(c[:expected])
-        ensure
-          case_after c
-        end
-      end
-
-      def case_before(c)
-        # implement each case before
-      end
-
-      def case_after(c)
-        # implement each case after
-      end
-    end
-  end
 end
