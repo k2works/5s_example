@@ -441,6 +441,18 @@ class FiveS_sample
 end
 ```
 ## <a name="5">清潔</a>
+コードがクリーンな状態を維持する
+```bash
+$ rspec
+/Users/k2works/projects/github/5s_example/spec/five_s_sample_spec.rb:78: warning: method redefined; discarding old case_before
+/Users/k2works/projects/github/5s_example/spec/five_s_sample_spec.rb:78: warning: previous definition of case_before was here
+/Users/k2works/projects/github/5s_example/spec/five_s_sample_spec.rb:82: warning: method redefined; discarding old case_after
+/Users/k2works/projects/github/5s_example/spec/five_s_sample_spec.rb:82: warning: previous definition of case_after was here
+....
+
+Finished in 0.0016 seconds (files took 0.09781 seconds to load)
+4 examples, 0 failures
+```
 ## <a name="6">躾</a>
 
 # 参照
